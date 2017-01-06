@@ -1,13 +1,20 @@
+#!/usr/bin/env rake
 require "bundler/gem_tasks"
 require 'rspec/core/rake_task'
-require File.expand_path("../lib/omniauth/mercadopago/version", __FILE__)
+require File.expand_path("../lib/omniauth-mercadopago/version", __FILE__)
 
-RSpec::Core::RakeTask.new(:spec) do |spec|
-  spec.pattern = 'spec/**/*_spec.rb'
-  spec.rspec_opts = ['--color']
+RSpec::Core::RakeTask.new
+
+begin
+  require "rubocop/rake_task"
+  RuboCop::RakeTask.new
+rescue LoadError
+  task :rubocop do
+    $stderr.puts "RuboCop is disabled"
+  end
 end
 
-task default: :spec
+task test: :spec
 
 task :build do
   sh "gem build omniauth-mercadopago.gemspec"
@@ -21,3 +28,5 @@ end
 task :console do
   sh "irb -rubygems -I lib/omniauth -r mercadopago.rb"
 end
+
+task default: [:spec, :rubocop]

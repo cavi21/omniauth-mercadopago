@@ -1,2 +1,2 @@
-require "omniauth/mercadopago/version"
+require "omniauth-mercadopago/version"
 require 'omniauth/strategies/mercadopago'
