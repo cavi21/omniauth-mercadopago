@@ -19,8 +19,8 @@ Gem::Specification.new do |gem|
   gem.executables   = `git ls-files -- bin/*`.split("\n").collect { |f| File.basename(f) }
   gem.require_paths = %w(lib)
 
-  gem.add_runtime_dependency 'omniauth-oauth2', '~> 1.2'
+  gem.add_runtime_dependency 'omniauth-oauth2', '~> 1.4'
 
-  gem.add_development_dependency "bundler", "~> 1.10"
+  gem.add_development_dependency "bundler", "~> 2.0"
   gem.add_development_dependency "rake", "~> 10.0"
 end
